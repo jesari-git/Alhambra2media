@@ -4,16 +4,19 @@
 
 -------------------------------------------------------------------------------
 
-How to test it on an Master-ICE40 board:
+How to test it on an Alhambra-II board with the multimedia shield attached:
 
 1 - Execute the "burncombi" script. This writes the flash with:
     - The FPGA configuration bitstream
-    - The reset code for the RiscV core, that includes a debugger.
+    - The reset code for the RiscV core, that includes a debugger
     - A demo program for testing
   
 3 - Open a serial terminal 
 
-	iceload -d /dev/ttyUSB1 -t 
+	iceload -d /dev/ttyUSB1 -t
+	
+	or use your preferred serial terminal app (i.e. GTKTerm, CoolTerm...) with
+	these settings :
       Port: "/dev/ttyUSB1" (linux) or the proper COM port on Windows
       Baud rate: 115200
       Parity: None
@@ -89,6 +92,13 @@ TESTING CODES
         .word   _edata-start	; number of bytes
         .word   start			; entry address
         
+    Words are little-endian (LSB sent first) and the header isn't loaded into
+    memory.
+    
+    The binary image file has to be sent over the serial port. (No flow control
+    is required) After the loading the debugger pops again with the PC pointing
+    at the first instruction of the loaded code. Then press "c" (continue)
+    
     (For a funny demo try to load the "pk2" file ;)
 	
 2 - RUNNING THE DEMO
