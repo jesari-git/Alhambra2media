@@ -13,8 +13,8 @@ How to test it on an Master-ICE40 board:
   
 3 - Open a serial terminal 
 
-	iceload -t 
-      Port: "/dev/ttyACM0" (linux) or the proper COM port on Windows
+	iceload -d /dev/ttyUSB1 -t 
+      Port: "/dev/ttyUSB1" (linux) or the proper COM port on Windows
       Baud rate: 115200
       Parity: None
       Flow Control: None
